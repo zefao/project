@@ -61,7 +61,7 @@ export default class Apps extends Component {
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.btnRecuperarSenhaContainer}>
-          <Text style={styles.btnLoginHome}>Recover Password</Text>
+          <Text style={styles.btnLoginHome}>Recover Password teste</Text>
         </TouchableOpacity>
 
 
