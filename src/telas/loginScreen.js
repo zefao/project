@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 import {
   StyleSheet,
   Text,
@@ -8,17 +9,17 @@ import {
   TextInput,
   TouchableOpacity,
   Dimensions,
+  Button,
   StatusBar//detalhe da parte de cima do celular
 } from 'react-native';
 
 const { width: WIDTH } = Dimensions.get('window')
+//import cadastroScreen from './cadastroScreen';
 
-export default class Apps extends Component {
-  _onPressButton() {
-    alert("wait...")
-  }
+export default class loginScreen extends Component {
 
   render() {
+    //const { navigate } = this.props.navigation;
     return (
       <ImageBackground source={require('../imagens/imagemhome.jpg')} style={styles.backgroundContainer}>
         <StatusBar barStyle='default'
@@ -32,11 +33,10 @@ export default class Apps extends Component {
             returnKeyType='next' //vai para proxima caixa
             placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
             underlineColorAndroid='transparent'
-            onSubmitEditing={() => this.passwordInput.focus()}//(1) usado para pular para password
+            //onSubmitEditing={() => this.passwordInput.focus()}//(1) usado para pular para password
             keyboardType='email-address'//tipo de txt no usuario
             autoCapitalize='none'
             autoCorrect={false}
-
           />
         </View>
         <View>
@@ -46,7 +46,7 @@ export default class Apps extends Component {
             returnKeyType='go'
             placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
             underlineColorAndroid='transparent'
-            ref={(input) => this.passwordInput = input}//(1) usado para pular para password
+          // ref={(input) => this.inputPassword = input}//(1) usado para pular para password
           />
         </View>
         <View style={{ marginTop: 20, alignContent: 'center', flexDirection: 'row' }}>
@@ -54,17 +54,15 @@ export default class Apps extends Component {
             <Text style={styles.btnLoginHome}>Login</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={this._onPressButton} >
+          <TouchableOpacity onPress={() => this.props.navigation.navigate("CadastroScreen")}>
             <View style={styles.btnCadastrarContainer}>
               <Text style={styles.btnLoginHome}>Create Account</Text>
             </View>
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.btnRecuperarSenhaContainer}>
-          <Text style={styles.btnLoginHome}>Recover Password teste</Text>
+          <Text style={styles.btnLoginHome}>Recover Password</Text>
         </TouchableOpacity>
-
-
       </ImageBackground>
     );
   }
