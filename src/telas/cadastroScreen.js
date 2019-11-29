@@ -6,7 +6,7 @@ import {
     View,
     ImageBackground,
     TextInput,
-    //TouchableOpacity,
+    TouchableOpacity,
     Dimensions,
     StatusBar
 } from 'react-native';
@@ -22,60 +22,98 @@ export default class cadastroScreen extends Component {
                 <StatusBar barStyle='default'
                 />
                 <View>
-                    <Text style={styles.LoginTXT}> Cadastro! </Text>
+                    <Text style={styles.LoginCadastro}> Cadastro! </Text>
                 </View>
 
                 <View>
-                    <TextInput style={styles.email}//caixa de txt para usuario
+                    <TextInput style={styles.email}//caixa de txt para Email
                         placeholder={'Email'}
                         returnKeyType='next' //vai para proxima caixa
                         placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
                         underlineColorAndroid='transparent'
-                        //onSubmitEditing={() => this.passwordInput.focus()}//(1) usado para pular para password
+                        onSubmitEditing={() => { this.NameTextInput.focus(); }}//passa para proxima cx
                         keyboardType='email-address'//tipo de txt no usuario
                         autoCapitalize='none'
                         autoCorrect={false}
                     />
+
                     <TextInput style={styles.name}//caixa de txt para usuario
-                        placeholder={'Name'}
+                        placeholder={'Nome Completo'}
+                        textContentType='name'
                         returnKeyType='next' //vai para proxima caixa
                         placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
                         underlineColorAndroid='transparent'
-                        //onSubmitEditing={() => this.passwordInput.focus()}//(1) usado para pular para password
+                        ref={(input) => { this.NameTextInput = input; }}//referencia para ser lido como proximo
+                        onSubmitEditing={() => { this.RGATextInput.focus(); }}
                         autoCapitalize='none'
                         autoCorrect={false}
                     />
-                    <TextInput style={styles.username}//caixa de txt para usuario
-                        placeholder={'Username'}
-                        returnKeyType='next' //vai para proxima caixa
+                    <TextInput style={styles.rga}//caixa de txt para RGA
+                        placeholder={'RGA'}
+                        returnKeyType='next'
+                        keyboardType='numeric'
                         placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
                         underlineColorAndroid='transparent'
-                        //onSubmitEditing={() => this.passwordInput.focus()}//(1) usado para pular para password
+                        onSubmitEditing={() => { this.UsernameTextInput.focus(); }}
+                        ref={(input) => { this.RGATextInput = input; }}
                         autoCapitalize='none'
                         autoCorrect={false}
                     />
-                    <TextInput style={styles.Password}//caixa de txt para usuario
-                        placeholder={'Passoword'}
+                    <TextInput style={styles.username}//caixa de txt para username
+                        placeholder={'Usuário'}
+                        returnKeyType='next' //vai para proxima caixa
+                        textContentType='givenName'
+                        placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
+                        underlineColorAndroid='transparent'
+                        onSubmitEditing={() => { this.PasswordTextInput.focus(); }}
+                        ref={(input) => { this.UsernameTextInput = input; }}
+                        autoCapitalize='none'
+                        autoCorrect={false}
+                    />
+                    <TextInput style={styles.Password}//caixa de txt para Password
+                        placeholder={'Senha'}
                         secureTextEntry={true}
                         returnKeyType='next'
+                        textContentType='password'
                         placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
                         underlineColorAndroid='transparent'
-                        ref={(input) => this.passwordInput = input}//(1) usado para pular para password
+                        onSubmitEditing={() => { this.ConfirmPasswordTextInput.focus(); }}
+                        ref={(input) => this.PasswordTextInput = input}//(1) usado para pular para password
                     />
-                    <TextInput style={styles.confirmPassword}//caixa de txt para usuario
-                        placeholder={'Confirm Passoword'}
+                    <TextInput style={styles.confirmPassword}//caixa de txt para  Password
+                        placeholder={'Confirmar Senha'}
+                        textContentType='newPassword'
                         secureTextEntry={true}
                         returnKeyType='go'
                         placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
                         underlineColorAndroid='transparent'
-                        ref={(input) => this.passwordInput = input}//(1) usado para pular para password
+                        ref={(input) => this.ConfirmPasswordTextInput = input}//(1) usado para pular para password
                     />
+                </View>
+                <View style={{ marginTop: 20, alignContent: 'center', flexDirection: 'row' }}>
+                    <TouchableOpacity>
+                        <View style={styles.btnCadastrar}>
+                            <Text style={styles.btnCadastrarCadastro}>Cadastrar</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate("LoginScreen")}>
+                        <View style={styles.btnRetornar}>
+                            <Text style={styles.btnRetornarCadastro}>Retornar</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </ImageBackground>
         )
     }
 }
 const styles = StyleSheet.create({
+    LoginCadastro: {
+        color: 'white',
+        fontSize: 25,
+        fontWeight: '500',
+        marginTop: 10,
+        opacity: 0.5
+    },
     backgroundContainer: { // background da tela
         flex: 4,
         justifyContent: 'center',
@@ -93,6 +131,17 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     name: {
+        width: WIDTH - 55,
+        height: 45,
+        borderRadius: 45,
+        fontSize: 16,
+        paddingLeft: 45,
+        backgroundColor: 'rgba(0, 0, 0, 0.35)',
+        color: 'rgba(255, 255, 255, 0.7)',
+        marginHorizontal: 25,
+        marginTop: 5
+    },
+    rga: {
         width: WIDTH - 55,
         height: 45,
         borderRadius: 45,
@@ -135,5 +184,29 @@ const styles = StyleSheet.create({
         color: 'rgba(255, 255, 255, 0.7)',
         marginHorizontal: 25,
         marginTop: 5
+    },
+    btnCadastrar: {
+        backgroundColor: 'rgba(0, 0, 0, 0.35)',
+        paddingVertical: 10,
+        borderRadius: 45,
+    },
+    btnRetornar: {
+        backgroundColor: 'rgba(0, 0, 0, 0.35)',
+        paddingVertical: 10,
+        borderRadius: 45,
+    },
+    btnCadastrarCadastro: {
+        textAlign: 'center',
+        width: 150,
+        height: 20,
+        fontSize: 16,
+        color: 'rgba(255, 255, 255, 0.7)'
+    },
+    btnRetornarCadastro: {
+        textAlign: 'center',
+        width: 150,
+        height: 20,
+        fontSize: 16,
+        color: 'rgba(255, 255, 255, 0.7)'
     }
 });

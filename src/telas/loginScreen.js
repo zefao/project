@@ -29,11 +29,11 @@ export default class loginScreen extends Component {
         </View>
         <View>
           <TextInput style={styles.input}//caixa de txt para usuario
-            placeholder={'Username/Email'}
+            placeholder={'Usuário/Email'}
             returnKeyType='next' //vai para proxima caixa
             placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
             underlineColorAndroid='transparent'
-            //onSubmitEditing={() => this.passwordInput.focus()}//(1) usado para pular para password
+            onSubmitEditing={() => { this.PasswordTextInput.focus(); }}//(1) usado para pular para password
             keyboardType='email-address'//tipo de txt no usuario
             autoCapitalize='none'
             autoCorrect={false}
@@ -41,12 +41,12 @@ export default class loginScreen extends Component {
         </View>
         <View>
           <TextInput style={styles.inputPassword}//caixa de txt para usuario
-            placeholder={'Passoword'}
+            placeholder={'Senha'}
             secureTextEntry={true}
             returnKeyType='go'
             placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
             underlineColorAndroid='transparent'
-          // ref={(input) => this.inputPassword = input}//(1) usado para pular para password
+            ref={(input) => this.PasswordTextInput = input}
           />
         </View>
         <View style={{ marginTop: 20, alignContent: 'center', flexDirection: 'row' }}>
@@ -56,12 +56,12 @@ export default class loginScreen extends Component {
 
           <TouchableOpacity onPress={() => this.props.navigation.navigate("CadastroScreen")}>
             <View style={styles.btnCadastrarContainer}>
-              <Text style={styles.btnLoginHome}>Create Account</Text>
+              <Text style={styles.btnLoginHome}>Criar Conta</Text>
             </View>
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.btnRecuperarSenhaContainer}>
-          <Text style={styles.btnLoginHome}>Recover Password</Text>
+          <Text style={styles.btnLoginHome}>Recuperar Senha</Text>
         </TouchableOpacity>
       </ImageBackground>
     );
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   LoginTXT: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 25,
     fontWeight: '500',
     marginTop: 10,
     opacity: 0.5
