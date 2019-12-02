@@ -4,6 +4,8 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import loginScreen from './src/telas/loginScreen';
 import cadastroScreen from './src/telas/cadastroScreen';
+import homeScreen from './src/telas/homeScreen';
+//import loading from './src/telas/loading';
 
 //const AppStack = createStackNavigator({
 // Home: {
@@ -16,6 +18,8 @@ export default createAppContainer(
     {
       LoginScreen: loginScreen,
       CadastroScreen: cadastroScreen,
+      HomeScreen: homeScreen,
+     // Loading: loading
     },
     {
       initialRouteName: 'LoginScreen',

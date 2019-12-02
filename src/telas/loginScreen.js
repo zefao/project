@@ -9,17 +9,23 @@ import {
   TextInput,
   TouchableOpacity,
   Dimensions,
-  Button,
   StatusBar//detalhe da parte de cima do celular
 } from 'react-native';
 
 const { width: WIDTH } = Dimensions.get('window')
-//import cadastroScreen from './cadastroScreen';
+
 
 export default class loginScreen extends Component {
-
+/*
+  state = {
+    usuario:'',
+    senha: '',
+    errorMessage: null
+  }
+  handleLogin() {
+    console.log('handleLogin')
+  }*/
   render() {
-    //const { navigate } = this.props.navigation;
     return (
       <ImageBackground source={require('../imagens/imagemhome.jpg')} style={styles.backgroundContainer}>
         <StatusBar barStyle='default'

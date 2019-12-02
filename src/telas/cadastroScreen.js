@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+//import firebase from 'react-native-firebase';
 
 import {
     StyleSheet,
@@ -16,6 +17,27 @@ import {
 const { width: WIDTH } = Dimensions.get('window')
 
 export default class cadastroScreen extends Component {
+    /*state = {
+        email: '',
+        nome: '',
+        rga: '',
+        usuario: '',
+        senha: '',
+        errorMessage: null
+    }
+    handleCadastro = () => { //metodo para cadastrar
+        firebase
+            .auth()
+            .createUserWithEmailAndNomeAndRgaAndUsuarioAndSenha(
+                this.state.email,
+                this.state.nome,
+                this.state.rga,
+                this.state.usuario,
+                this.state.senha
+            )
+            .then(() => this.props.navigation.navigate("LoginScreen"))
+            .catch(error => this.setState({ errorMessage: error.message }))
+    }*/
     render() {
         return (
             <ImageBackground source={require('../imagens/imagemhome.jpg')} style={styles.backgroundContainer}>
@@ -35,6 +57,8 @@ export default class cadastroScreen extends Component {
                         keyboardType='email-address'//tipo de txt no usuario
                         autoCapitalize='none'
                         autoCorrect={false}
+                        //onChangeText={email => this.setState({ email })}
+                        //value={this.state.email}
                     />
 
                     <TextInput style={styles.name}//caixa de txt para usuario
@@ -47,6 +71,8 @@ export default class cadastroScreen extends Component {
                         onSubmitEditing={() => { this.RGATextInput.focus(); }}
                         autoCapitalize='none'
                         autoCorrect={false}
+                        //onChangeText={nome => this.setState({ nome })}
+                        //value={this.state.nome}
                     />
                     <TextInput style={styles.rga}//caixa de txt para RGA
                         placeholder={'RGA'}
@@ -58,6 +84,8 @@ export default class cadastroScreen extends Component {
                         ref={(input) => { this.RGATextInput = input; }}
                         autoCapitalize='none'
                         autoCorrect={false}
+                        //onChangeText={rga => this.setState({ rga })}
+                       // value={this.state.rga}
                     />
                     <TextInput style={styles.username}//caixa de txt para username
                         placeholder={'Usuário'}
@@ -69,6 +97,8 @@ export default class cadastroScreen extends Component {
                         ref={(input) => { this.UsernameTextInput = input; }}
                         autoCapitalize='none'
                         autoCorrect={false}
+                       // onChangeText={usuario => this.setState({ usuario })}
+                       // value={this.state.usuario}
                     />
                     <TextInput style={styles.Password}//caixa de txt para Password
                         placeholder={'Senha'}
@@ -79,6 +109,8 @@ export default class cadastroScreen extends Component {
                         underlineColorAndroid='transparent'
                         onSubmitEditing={() => { this.ConfirmPasswordTextInput.focus(); }}
                         ref={(input) => this.PasswordTextInput = input}//(1) usado para pular para password
+                        //onChangeText={senha => this.setState({ senha })}
+                      //  value={this.state.senha}
                     />
                     <TextInput style={styles.confirmPassword}//caixa de txt para  Password
                         placeholder={'Confirmar Senha'}
@@ -91,7 +123,7 @@ export default class cadastroScreen extends Component {
                     />
                 </View>
                 <View style={{ marginTop: 20, alignContent: 'center', flexDirection: 'row' }}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.handleCadastro}>
                         <View style={styles.btnCadastrar}>
                             <Text style={styles.btnCadastrarCadastro}>Cadastrar</Text>
                         </View>
