@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import firebase from 'react-native-firebase'
 
 import {
   StyleSheet,
@@ -9,22 +9,33 @@ import {
   TextInput,
   TouchableOpacity,
   Dimensions,
-  StatusBar//detalhe da parte de cima do celular
+  StatusBar,//detalhe da parte de cima do celular
+  // async
 } from 'react-native';
 
 const { width: WIDTH } = Dimensions.get('window')
 
 
 export default class loginScreen extends Component {
-/*
-  state = {
-    usuario:'',
+  state = {//estado para login
+    email: '',
     senha: '',
-    errorMessage: null
+    isAuthenticated: false,
+  };
+
+  login = async () => {
+    const { email, senha } = this.state;
+    try {
+      const user = await firebase.auth()
+        .signInWithEmailAndPassword(email, senha);
+      this.setState({ isAuthenticated: true });
+      this.props.navigation.navigate("HomeScreen");
+      console.log(user);
+    } catch (err) {
+      console.log(err);
+    }
+
   }
-  handleLogin() {
-    console.log('handleLogin')
-  }*/
   render() {
     return (
       <ImageBackground source={require('../imagens/imagemhome.jpg')} style={styles.backgroundContainer}>
@@ -43,6 +54,7 @@ export default class loginScreen extends Component {
             keyboardType='email-address'//tipo de txt no usuario
             autoCapitalize='none'
             autoCorrect={false}
+            value={this.state.email}
           />
         </View>
         <View>
@@ -53,13 +65,13 @@ export default class loginScreen extends Component {
             placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
             underlineColorAndroid='transparent'
             ref={(input) => this.PasswordTextInput = input}
+            value={this.state.senha}
           />
         </View>
         <View style={{ marginTop: 20, alignContent: 'center', flexDirection: 'row' }}>
-          <TouchableOpacity style={styles.btnLoginContainer}>
+          <TouchableOpacity style={styles.btnLoginContainer} onPress={this.login}>
             <Text style={styles.btnLoginHome}>Login</Text>
           </TouchableOpacity>
-
           <TouchableOpacity onPress={() => this.props.navigation.navigate("CadastroScreen")}>
             <View style={styles.btnCadastrarContainer}>
               <Text style={styles.btnLoginHome}>Criar Conta</Text>
