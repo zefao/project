@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "101501387459",
+    "firebase_url": "https://compila-project.firebaseio.com",
+    "project_id": "compila-project",
+    "storage_bucket": "compila-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101501387459:android:5f770100d180d635879876",
+        "android_client_info": {
+          "package_name": "com.zefao.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "101501387459-fd9ibi03igv13a0decp6ffgk6r73g9r6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKVXJBWAu2vGowJ4yGT2QEe7QQ3ejn9hs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101501387459-fd9ibi03igv13a0decp6ffgk6r73g9r6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
