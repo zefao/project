@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import firebase from 'react-native-firebase'
 
 import {
@@ -16,77 +16,80 @@ import {
 const { width: WIDTH } = Dimensions.get('window')
 
 
-export default class loginScreen extends Component {
-  state = {//estado para login
-    email: '',
-    senha: '',
-    isAuthenticated: false,
-  };
+export default function loginScreen(props) {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [auth, setAuth] = useState(false);
 
-  login = async () => {
-    const { email, senha } = this.state;
-    try {
-      const user = await firebase.auth()
-        .signInWithEmailAndPassword(email, senha);
-      this.setState({ isAuthenticated: true });
-      this.props.navigation.navigate("HomeScreen");
-      console.log(user);
-    } catch (err) {
-      console.log(err);
-    }
+  async function login() {
+    console.log(email, senha);
 
+    // const { email, senha } = this.state;
+    // try {
+    //   const user = await firebase.auth()
+    //     .signInWithEmailAndPassword(email, senha);
+    //   this.setState({ isAuthenticated: true });
+    //   this.props.navigation.navigate("HomeScreen");
+    //   console.log(user);
+    // } catch (err) {
+    //   console.log(err);
+    // }
   }
-  render() {
-    return (
-      <ImageBackground source={require('../imagens/imagemhome.jpg')} style={styles.backgroundContainer}>
-        <StatusBar barStyle='default' />
-        <View>
-          <Text style={styles.LoginTXT}> Welcome! </Text>
-        </View>
-        <View>
-          <TextInput style={styles.input}//caixa de txt para usuario
-            placeholder={'Usuário/Email'}
-            value={this.state.email}
-            returnKeyType='next' //vai para proxima caixa
-            placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
-            underlineColorAndroid='transparent'
-            onSubmitEditing={() => { this.PasswordTextInput.focus(); }}//(1) usado para pular para password
-            keyboardType='email-address'//tipo de txt no usuario
-            autoCapitalize='none'
-            autoCorrect={false}
-            value={this.state.email}
-          />
-        </View>
-        <View>
-          <TextInput style={styles.inputPassword}//caixa de txt para usuario
-            placeholder={'Senha'}
-            value={this.state.senha}
-            secureTextEntry={true}
-            returnKeyType='go'
-            placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
-            underlineColorAndroid='transparent'
-            ref={(input) => this.PasswordTextInput = input}
-            value={this.state.senha}
-          />
-        </View>
-        <View style={{ marginTop: 20, alignContent: 'center', flexDirection: 'row' }}>
-          <TouchableOpacity style={styles.btnLoginContainer} onPress={this.login}>
-            <Text style={styles.btnLoginHome}>Login</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate("CadastroScreen")}>
-            <View style={styles.btnCadastrarContainer}>
-              <Text style={styles.btnLoginHome}>Criar Conta</Text>
-            </View>
-          </TouchableOpacity>
 
+  return (
+    <ImageBackground source={require('../imagens/imagemhome.jpg')} style={styles.backgroundContainer}>
 
-        </View>
-        <TouchableOpacity style={styles.btnRecuperarSenhaContainer}>
-          <Text style={styles.btnLoginHome}>Recuperar Senha</Text>
+      <StatusBar barStyle='default' />
+
+      <View>
+        <Text style={styles.LoginTXT}> Welcome! </Text>
+      </View>
+
+      <View>
+        <TextInput style={styles.input}//caixa de txt para usuario
+          placeholder={'Usuário/Email'}
+          value={email}
+          onChangeText={text => setEmail(text)}
+          returnKeyType='next' //vai para proxima caixa
+          placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
+          underlineColorAndroid='transparent'
+          onSubmitEditing={() => { PasswordTextInput.focus(); }}//(1) usado para pular para password
+          keyboardType='email-address'//tipo de txt no usuario
+          autoCapitalize='none'
+          autoCorrect={false}
+        />
+      </View>
+
+      <View>
+        <TextInput style={styles.inputPassword}//caixa de txt para usuario
+          placeholder={'Senha'}
+          value={senha}
+          onChangeText={text => setSenha(text)}
+          secureTextEntry={true}
+          returnKeyType='go'
+          placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
+          underlineColorAndroid='transparent'
+          ref={(input) => PasswordTextInput = input}
+        />
+      </View>
+
+      <View style={{ marginTop: 20, alignContent: 'center', flexDirection: 'row' }}>
+        <TouchableOpacity style={styles.btnLoginContainer} onPress={login}>
+          <Text style={styles.btnLoginHome}>Login</Text>
         </TouchableOpacity>
-      </ImageBackground>
-    );
-  }
+        <TouchableOpacity onPress={() => props.navigation.navigate("CadastroScreen")}>
+          <View style={styles.btnCadastrarContainer}>
+            <Text style={styles.btnLoginHome}>Criar Conta</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity style={styles.btnRecuperarSenhaContainer}>
+        <Text style={styles.btnLoginHome}>Recuperar Senha</Text>
+      </TouchableOpacity>
+
+    </ImageBackground>
+  );
 }
 
 const styles = StyleSheet.create({
