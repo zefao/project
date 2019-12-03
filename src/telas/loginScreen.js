@@ -39,14 +39,14 @@ export default class loginScreen extends Component {
   render() {
     return (
       <ImageBackground source={require('../imagens/imagemhome.jpg')} style={styles.backgroundContainer}>
-        <StatusBar barStyle='default'
-        />
+        <StatusBar barStyle='default' />
         <View>
           <Text style={styles.LoginTXT}> Welcome! </Text>
         </View>
         <View>
           <TextInput style={styles.input}//caixa de txt para usuario
             placeholder={'Usuário/Email'}
+            value={this.state.email}
             returnKeyType='next' //vai para proxima caixa
             placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
             underlineColorAndroid='transparent'
@@ -60,6 +60,7 @@ export default class loginScreen extends Component {
         <View>
           <TextInput style={styles.inputPassword}//caixa de txt para usuario
             placeholder={'Senha'}
+            value={this.state.senha}
             secureTextEntry={true}
             returnKeyType='go'
             placeholderTextColor={'rgba(255, 255, 255, 0.7)'}//tipo de fonte     
@@ -77,6 +78,8 @@ export default class loginScreen extends Component {
               <Text style={styles.btnLoginHome}>Criar Conta</Text>
             </View>
           </TouchableOpacity>
+
+
         </View>
         <TouchableOpacity style={styles.btnRecuperarSenhaContainer}>
           <Text style={styles.btnLoginHome}>Recuperar Senha</Text>
